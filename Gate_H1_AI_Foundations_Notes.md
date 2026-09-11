@@ -8,28 +8,6 @@ Build a practical understanding of the modern AI landscape and establish a worki
 
 **Task:** Research and categorize the major AI subfields (ML, DL, NLP, CV, GenAI), identifying real-world applications, named examples, and how each relates to the broader AI field. Study the core concepts behind transformer-based LLMs (tokenization, embeddings, attention, context windows, transformers). Set up and verify a working AI development environment: Python, Jupyter, Hugging Face access, Kaggle access, and at least one LLM API (OpenAI or Gemini).
 
-**Required Deliverables**
-- AI Landscape Map — subfields, relationships, ≥10 named AI technologies/models/tools with a short explanation of what each does and which subfield it belongs to.
-- LLM API Notebook — loads the API key from an environment variable, sends a request, receives a response, produces and prints a structured (e.g. JSON) response, runs start to finish. API keys must never be hardcoded or committed to Git.
-
-**Pass Criteria**
-- Landscape map is accurate, organized, contains ≥10 named examples — explainable without reading from the submission.
-- Can explain the difference between ML, DL, NLP, CV, and GenAI.
-- Can explain tokenization, embeddings, attention, transformers, and context windows in own words.
-- Python and Jupyter installed and working.
-- Notebook successfully calls the chosen LLM API; credentials stored in environment variables, never hardcoded.
-- Can explain the notebook code line by line, without prompting; no code committed that can't be explained.
-- Required day-floor met; commit history and daily check-ins show steady, spread-out progress rather than a last-minute burst.
-
-**Evidence to Submit**
-- AI landscape map
-- Completed Jupyter notebook
-- Evidence of a successful LLM API call
-- Git commit history
-- Daily check-in records
-
----
-
 ## 2. AI Subfields — How They Relate
 
 The subfields nest as concentric circles, not separate boxes:
@@ -45,7 +23,7 @@ Artificial Intelligence (AI)
 
 **Machine Learning (ML)**
 The parent discipline: instead of hand-coding rules, a system learns patterns/statistical relationships from data. Ranges from simple linear regression to random forests to neural networks.
-> *Example:* A hospital readmission risk calculator trained on historical patient data (logistic regression or gradient boosting, e.g. XGBoost) — "classic ML," not deep learning.
+> *Example:* A bank's loan default predictor trained on historical applicant data (logistic regression or gradient boosting, e.g. XGBoost) — "classic ML," not deep learning.
 
 **Deep Learning (DL)**
 A subset of ML using artificial neural networks with many layers. Scales well with large datasets and compute — what unlocked the current AI boom.
@@ -53,11 +31,11 @@ A subset of ML using artificial neural networks with many layers. Scales well wi
 
 **Natural Language Processing (NLP)**
 Machines understanding/generating human language. Historically rule-based/statistical; now dominated by deep learning (transformers).
-> *Example:* spaCy — an NLP library used for tasks like extracting diagnoses or drug names from clinical notes (named entity recognition).
+> *Example:* spaCy — an NLP library used for tasks like extracting diagnoses or drug names from clinical notes .
 
 **Computer Vision (CV)**
 Machines interpreting visual data (images, video).
-> *Example:* CheXNet — a deep learning model trained to detect pneumonia from chest X-rays (Stanford).
+> *Example:* ResNet-driven satellite imagery analysis — a deep convolutional neural network used to detect deforestation or flood damage from satellite photos.
 
 **Generative AI (GenAI)**
 Not a separate pipeline but a capability: models that generate new content (text, images, audio) rather than just classifying/predicting. Overlaps heavily with NLP and CV, powered by deep learning.
@@ -75,10 +53,10 @@ Built in the order they occur when a prompt is processed:
 Text is chopped into tokens — not quite words, not quite characters (e.g. "pneumothorax" → ["pneum", "othorax"]), using a tokenizer such as BPE (Byte Pair Encoding). Common words are often one token; rare/technical words get split. This is why LLMs are priced per token and why a "128k context window" is measured in tokens, not words.
 
 **2. Embeddings**
-Each token becomes a vector — a long list of numbers (e.g. 768 or 4096 dimensions) representing its meaning as a position in high-dimensional space. Words with similar meaning sit close together (e.g. "myocardial infarction," "heart attack," and "MI" cluster near each other; "mitral" does not necessarily).
+Each token becomes a vector — a long list of numbers (e.g. 768 or 4096 dimensions) representing its meaning as a position in high-dimensional space. Words with similar meaning sit close togetheWords with similar meaning sit close together (e.g. "automobile," "car," and "vehicle" cluster near each other; "carpet" does not, despite sharing letters with "car").
 
 **3. Attention**
-From the 2017 paper "Attention Is All You Need." For every token, attention asks which other tokens in the sequence it should weight to be understood correctly. Example: in "the patient took it despite the nausea," attention lets the model resolve "it" to a drug named several sentences earlier by weighting that token heavily. Self-attention does this for every token against every other token simultaneously — enabling long-range context handling, unlike older word-by-word RNN models.
+From the 2017 paper "Attention Is All You Need." For every token, attention asks which other tokens in the sequence it should weight to be understood correctly. Example: in "she picked up the umbrella and opened it before stepping outside," attention lets the model resolve "it" to "umbrella" — a word several tokens earlier — by weighting that token heavily. Self-attention does this for every token against every other token simultaneously — enabling long-range context handling, unlike older word-by-word RNN models.
 
 **4. Transformers**
 The architecture packaging tokenization → embeddings → (multiple layers of) self-attention → output, trained end-to-end. "Transformer" is the blueprint; GPT, Gemini, Claude, and LLaMA are specific models built on it.
@@ -138,58 +116,6 @@ SDK = Software Development Kit: a pre-built package wrapping a service's raw HTT
 
 **google-genai (current SDK):** Google's official SDK for the Gemini API specifically (separate from the broader `google-cloud-*` packages). Provides a single `Client` object as the entry point for all capabilities — text generation, embeddings, file uploads, chat, structured JSON output, streaming, and multimodal (image + text) input.
 
-**Where this transfers beyond the gate:** the same pattern (API key from env var → official SDK → structured request/response) applies anywhere AI is bolted onto a real project — e.g. auto-generating a plain-English weekly summary from logged workout/nutrition data for the workout-nutrition project, parsing free-text meal entries ("2 eggs and toast") into structured DB fields instead of brittle regex, or later extracting structured fields from unstructured clinical notes (the same task shape as NLP entity extraction, via an API rather than a local model).
 
 ---
 
-## 6. Git & GitHub Submission Workflow
-
-**1. Initialize the repo**
-```
-git init
-```
-
-**2. Create `.gitignore` before the first commit**
-```
-.ipynb_checkpoints/
-*.env
-.env
-kaggle.json
-```
-`.ipynb_checkpoints/` is a hidden folder Jupyter auto-generates holding backup copies of the notebook (can contain stale output). `kaggle.json` holds Kaggle credentials. The Gemini key is already safe (lives only in an environment variable, not a file), but this `.gitignore` is the safety net for other credentials created in later gates.
-
-**3. Create a GitHub repo**
-github.com → New repository → name e.g. `gate-h1-ai-foundations` → do not initialize with a README → Create.
-
-**4. Connect and push**
-```
-git remote add origin https://github.com/your-username/gate-h1-ai-foundations.git
-git branch -M main
-```
-
-**5. Commit in stages (the "spread-out progress" evidence)**
-```
-git add .gitignore
-git commit -m "Add gitignore for Jupyter checkpoints and credentials"
-
-git add gate_h1_llm_notebook.ipynb
-git commit -m "Add notebook: env var key loading and basic Gemini request"
-
-git commit -am "Add structured JSON response cell"
-
-git push -u origin main
-```
-*Note:* since setup and the initial notebook build were completed in one sitting, commit timestamps will cluster on that day unless remaining work (landscape map, refinements, README) is genuinely spread across following days rather than finished in one sweep.
-
-**6. Daily check-ins**
-A separate requirement from the mentor (Slack message, standup doc, or similar) — Git commit timestamps alone don't count as check-ins; format should be confirmed directly with the mentor if not already specified.
-
----
-
-## 7. Status & Outstanding Items
-
-- Subfields hierarchy and core LLM concepts (tokenization, embeddings, attention, transformers, context windows) — covered, with the requirement to be able to restate each without notes.
-- Dev environment (Python, Jupyter, Hugging Face, Kaggle, Gemini API key, env var storage, SDK) — fully set up and verified (env var check printed True).
-- Git/GitHub submission workflow (init, .gitignore, staged commits, push) — outlined, ready to execute.
-- AI Landscape Map (≥10 named technologies/tools, relationships between subfields, one-line explanation each) — not yet built; concepts and examples above (ResNet, spaCy, CheXNet, GPT-4, DALL·E, plus Hugging Face/Kaggle/Gemini API itself) are the raw material to turn into the actual map/diagram deliverable.
-- Daily check-in format — not yet confirmed with mentor.
