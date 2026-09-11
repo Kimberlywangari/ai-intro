@@ -41,6 +41,26 @@ Machines interpreting visual data (images, video).
 Not a separate pipeline but a capability: models that generate new content (text, images, audio) rather than just classifying/predicting. Overlaps heavily with NLP and CV, powered by deep learning.
 > *Example:* GPT-4 (text generation, NLP+GenAI) and DALL·E (image generation, CV+GenAI).
 
+## AI Landscape Map — Named Examples
+
+At least 10 named AI technologies/models/tools, tagged to the subfield(s) they belong to, each explainable in one line without reading from notes.
+
+| # | Name | Subfield | What it does |
+|---|------|----------|---------------|
+| 1 | XGBoost | ML | Gradient boosting library for tabular prediction tasks (e.g. loan default scoring) |
+| 2 | scikit-learn | ML | Python library of classic ML algorithms (regression, random forests, clustering) |
+| 3 | ResNet | DL | Deep convolutional neural network architecture, a backbone for many vision tasks |
+| 4 | PyTorch | DL | Open-source framework for building and training neural networks |
+| 5 | spaCy | NLP | Industrial NLP library for tokenization, entity recognition, text parsing |
+| 6 | BERT | NLP | Transformer model for understanding text context (search, classification) |
+| 7 | YOLO | CV | Real-time object detection model for images and video |
+| 8 | OpenCV | CV | Computer vision library for image processing and feature detection |
+| 9 | GPT-4 | NLP + GenAI | Large language model for text generation, reasoning, chat |
+| 10 | DALL·E | CV + GenAI | Generates images from text prompts |
+| 11 | Gemini | NLP + GenAI | Google's multimodal LLM — the API called in the Gate H1 notebook |
+| 12 | Whisper | NLP | Speech-to-text model (audio → text transcription) |
+
+
 > **One-line summary:** AI is the umbrella goal — making machines act intelligently. ML is the dominant approach — learning from data instead of hard-coded rules. DL is the ML technique using deep neural networks that now powers most of NLP and CV. GenAI isn't a separate field — it's what happens when those DL/NLP/CV models are used to produce new content instead of just labeling or predicting.
 
 ---
